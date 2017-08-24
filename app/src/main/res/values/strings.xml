@@ -1,0 +1,15 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="youtube_api_key">AIzaSyDBQycZ7fwrRNm2OBTd54X4k9wcwjNM5LE</string>
+    <string name="movie_db_key">a07e22bc18f5cb106bfe4cc1f83ad8ed</string>
+    <string name="app_label">MovieClips</string>
+    <string name="search_hint">Search Movies...</string>
+    <string name="search_results">Search Results:</string>
+    <string name="rating">Rating</string>
+    <string name="movie_info">Movie Info</string>
+    <string name="genre">Genre:</string>
+    <string name="runtime">Runtime:</string>
+    <string name="more_videos">More Videos</string>
+    <string name="appName">MovieClips</string>
+</resources>

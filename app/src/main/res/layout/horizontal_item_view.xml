@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="140dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:textColor="@color/ivTextColor"
+        android:textSize="@dimen/ivTextSize"
+        android:paddingLeft="@dimen/activity_vertical_margin"
+        android:id="@+id/txtView"
+        tools:src="@drawable/placeholder"
+        android:layout_width="@dimen/ivWidth"
+        android:layout_height="@dimen/ivHeight" />
+
+    <ImageView
+        android:layout_width="@dimen/iv2_width"
+        android:layout_height="@dimen/iv2_height"
+        android:foregroundGravity="center"
+        android:id="@+id/ivPlayIcon"
+        android:alpha=".75"
+        android:src="@mipmap/ic_play"
+        android:layout_marginTop="@dimen/ivMarginTop"
+        android:layout_marginLeft="@dimen/ivMarginLeft"
+        android:layout_alignParentTop="true" />
+
+</RelativeLayout>

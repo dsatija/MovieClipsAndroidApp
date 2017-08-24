@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.dsatija.movieclips.activities.MovieDetails">
+        <com.google.android.youtube.player.YouTubePlayerView
+            android:id="@+id/player"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"/>
+
+        <ImageView
+            android:layout_width="@dimen/movie_width"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:scaleType="centerCrop"
+            android:id="@+id/ivMDImage"
+            android:padding="@dimen/space"
+            tools:src="@mipmap/ic_launcher"
+            android:layout_below="@id/player"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            tools:text="The Magnificent Seven"
+            android:paddingEnd="@dimen/activity_vertical_margin"
+            android:fontFamily="sans-serif"
+            android:id="@+id/tvMDTitle"
+            android:paddingTop="@dimen/space"
+            android:paddingLeft="@dimen/tvPaddingLeft"
+            android:layout_below="@id/player"
+            android:layout_toEndOf="@+id/ivMDImage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rating"
+            android:fontFamily="sans-serif"
+            android:id="@+id/tvMDVotingAverageKey"
+            android:paddingTop="@dimen/tvPaddingTop"
+            android:paddingLeft="@dimen/tvPaddingLeft"
+            android:textStyle="bold"
+            android:layout_below="@+id/tvMDTitle"
+            android:layout_toEndOf="@+id/ivMDImage" />
+
+        <RatingBar
+            tools:rating="6.7"
+            android:stepSize="0.5"
+            android:numStars="10"
+            android:paddingTop="@dimen/space"
+            android:paddingLeft="@dimen/tvPaddingLeft"
+            style="?android:attr/ratingBarStyleSmall"
+            android:id="@+id/tvMDVotingAverageValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMDVotingAverageKey"
+            android:layout_toEndOf="@+id/ivMDImage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Votes"
+            android:fontFamily="sans-serif"
+            android:paddingEnd="@dimen/activity_vertical_margin"
+            android:id="@+id/tvMDTotalVotesKey"
+            android:paddingTop="@dimen/tvPaddingLeft"
+            android:paddingLeft="@dimen/tvPaddingLeft"
+            android:textStyle="bold"
+            android:layout_below="@+id/tvMDVotingAverageValue"
+            android:layout_toEndOf="@+id/ivMDImage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="1000"
+            android:fontFamily="sans-serif"
+            android:paddingEnd="@dimen/activity_vertical_margin"
+            android:id="@+id/tvMDTotalVotesValue"
+            android:paddingLeft="@dimen/tvPaddingLeft"
+            android:paddingTop="@dimen/space"
+            android:layout_below="@+id/tvMDTotalVotesKey"
+            android:layout_toEndOf="@+id/ivMDImage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Popularity"
+            android:fontFamily="sans-serif"
+            android:paddingEnd="@dimen/activity_vertical_margin"
+            android:id="@+id/tvMDPopularityKey"
+            android:paddingTop="@dimen/tvPaddingLeft"
+            android:paddingLeft="@dimen/tvPaddingTop"
+            android:textStyle="bold"
+            android:layout_below="@+id/tvMDVotingAverageValue"
+            android:layout_toEndOf="@+id/tvMDTotalVotesKey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1000"
+            android:fontFamily="sans-serif"
+            android:paddingEnd="@dimen/activity_vertical_margin"
+            android:id="@+id/tvMDPopularityValue"
+            android:paddingLeft="@dimen/tvPaddingTop"
+            android:paddingTop="@dimen/space"
+            android:layout_alignLeft="@+id/tvMDPopularityKey"
+            android:layout_below="@+id/tvMDPopularityKey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:paddingStart="@dimen/activity_vertical_margin"
+            android:text="@string/movie_info"
+            android:id="@+id/tvMDInfo"
+            android:paddingTop="@dimen/space"
+            android:layout_below="@+id/ivMDImage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingStart="@dimen/activity_vertical_margin"
+            tools:text="A big screen remake of John Sturges' classic western The Magnificent Seven, itself a remake of Akira Kurosawa's Seven Samurai. Seven gun men in the old west gradually come together to help a poor village against savage thieves."
+            android:id="@+id/tvMDOverview"
+            android:padding="@dimen/space"
+            android:layout_below="@+id/tvMDInfo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingStart="@dimen/activity_vertical_margin"
+            android:text="@string/genre"
+            android:textStyle="bold"
+            android:id="@+id/tvMDGenreKey"
+            android:paddingTop="@dimen/tvPaddingGenre"
+            android:layout_below="@+id/tvMDOverview" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingLeft="@dimen/tvPaddingGenre"
+            tools:text="Action"
+            android:id="@+id/tvMDGenreValue"
+            android:paddingTop="@dimen/tvPaddingGenre"
+            android:layout_toRightOf="@id/tvMDGenreKey"
+            android:layout_below="@+id/tvMDOverview" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingStart="@dimen/activity_vertical_margin"
+            android:text="@string/runtime"
+            android:textStyle="bold"
+            android:id="@+id/tvMDRuntimeKey"
+            android:paddingTop="@dimen/tvPaddingGenre"
+            android:layout_below="@+id/tvMDGenreKey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingLeft="@dimen/tvPaddingGenre"
+            tools:text="2hr 20min"
+            android:id="@+id/tvMDRuntimeValue"
+            android:paddingTop="@dimen/tvPaddingGenre"
+            android:layout_toRightOf="@id/tvMDRuntimeKey"
+            android:layout_below="@+id/tvMDGenreKey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingStart="@dimen/activity_vertical_margin"
+            android:text="Release Date:"
+            android:textStyle="bold"
+            android:id="@+id/tvMDReleaseDateKey"
+            android:paddingTop="@dimen/tvPaddingGenre"
+            android:layout_below="@+id/tvMDRuntimeKey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingLeft="@dimen/tvPaddingGenre"
+            tools:text="2016-09-10"
+            android:id="@+id/tvMDReleaseDateValue"
+            android:paddingTop="10dp"
+            android:layout_toRightOf="@id/tvMDReleaseDateKey"
+            android:layout_below="@+id/tvMDRuntimeKey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingLeft="@dimen/tvPaddingGenre"
+            android:text="@string/more_videos"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvMDMoreVideosKey"
+            android:paddingTop="@dimen/tvPaddingGenre"
+            android:layout_below="@+id/tvMDReleaseDateValue" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_recycler_view"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/tvMDMoreVideosKey"
+            android:layout_height="@dimen/rvHorizHeight" />
+    </RelativeLayout>
+</ScrollView>
