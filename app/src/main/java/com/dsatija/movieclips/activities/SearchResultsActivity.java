@@ -1,6 +1,10 @@
 package com.dsatija.movieclips.activities;
 
+import static com.dsatija.movieclips.R.id.swipeContainer;
+
+import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +15,10 @@ import com.dsatija.movieclips.R;
 import com.dsatija.movieclips.adapters.ItemClickSupport;
 import com.dsatija.movieclips.adapters.SearchMovieAdapter;
 import com.dsatija.movieclips.models.Movie;
+import com.dsatija.movieclips.network.Connectivity;
+import com.dsatija.movieclips.network.NetworkCall;
+import com.dsatija.movieclips.utils.EndlessRecyclerViewScrollListener;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +36,9 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class SearchResultsActivity extends AppCompatActivity {
+
     ArrayList<Movie> movies = new ArrayList<Movie>();
+    private EndlessRecyclerViewScrollListener scrollListener;
     SearchMovieAdapter mSearchMovieAdapter = new SearchMovieAdapter(this, movies);
     private OkHttpClient client = new OkHttpClient();
     @BindView(R.id.slvMovies)
@@ -41,9 +51,24 @@ public class SearchResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_results);
         // View view = inflater.inflate(R.layout.fragment_page, container, false);
         ButterKnife.bind(this);
-        String query = getIntent().getStringExtra("key");
+        if (!Connectivity.isConnected(this)) {
+            TastyToast.makeText(this, "Please check your internet connection",
+                    TastyToast.LENGTH_LONG, TastyToast.ERROR);
+        }
+        final String QUERY = getIntent().getStringExtra("key");
         slvItems.setAdapter(mSearchMovieAdapter);
-        slvItems.setLayoutManager(new LinearLayoutManager(this));
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        slvItems.setLayoutManager(layoutManager);
+        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+                loadNextDataFromApi(QUERY, page + 1);
+            }
+        };
+        slvItems.addOnScrollListener(scrollListener);
         // Toast.makeText(this,"Searching for: " + query,Toast.LENGTH_LONG).show();
 
         ItemClickSupport.addTo(slvItems).setOnItemClickListener(
@@ -58,19 +83,31 @@ public class SearchResultsActivity extends AppCompatActivity {
                     }
                 }
         );
-        doSearch(query);
+        search(QUERY);
 
     }
 
-    private void doSearch(String query) {
+    private void loadNextDataFromApi(String query, int page) {
+
+        String url = "https://api.themoviedb.org/3/search/movie?query=" + query
+                + "&api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&page=" + page;
+        asyncCall(url, this, false);
+
+    }
+
+
+    private void search(String query) {
         //call the url
+
         String url = String.format("https://api.themoviedb.org/3/search/movie?query=%s"
                 + "&api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed", query);
-        asyncCall(url);
+        asyncCall(url, this, true);
+
 
     }
 
-    public void asyncCall(String url) {
+
+    public ArrayList<Movie> asyncCall(String url,final Activity act,final boolean isClear){
 
         Request request = new Request.Builder()
                 .url(url)
@@ -79,13 +116,13 @@ public class SearchResultsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
                 final String responseData = response.body().string();
-                runOnUiThread(new Runnable() {
+                act.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             JSONObject responseJSON = new JSONObject(responseData);
                             JSONArray movieJsonSearchResults = responseJSON.getJSONArray("results");
-                            if (movies != null) {
+                            if (movies != null && isClear) {
                                 movies.clear();
                             }
                             movies.addAll(Movie.fromJSONArray(movieJsonSearchResults));
@@ -103,6 +140,14 @@ public class SearchResultsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+        return movies;
     }
 
+
+    public void homeActionSearch(View view) {
+
+        Intent intent = new Intent(SearchResultsActivity.this, MovieClipsMainActivity.class);
+        startActivity(intent);
+    }
 }
+

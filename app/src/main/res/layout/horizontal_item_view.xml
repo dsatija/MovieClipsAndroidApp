@@ -8,7 +8,7 @@
     <ImageView
         android:textColor="@color/ivTextColor"
         android:textSize="@dimen/ivTextSize"
-        android:paddingLeft="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/outer_space"
         android:id="@+id/txtView"
         tools:src="@drawable/placeholder"
         android:layout_width="@dimen/ivWidth"

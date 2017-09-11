@@ -13,12 +13,16 @@
     card_view:contentPadding="3dp"
     android:clickable="true"
     card_view:cardBackgroundColor="#FFFFFF"
+    android:layout_marginTop="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/activity_vertical_margin"
+    android:layout_marginRight="@dimen/activity_vertical_margin"
     android:foreground="?android:attr/selectableItemBackground">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+      >
 
         <ImageView
             android:layout_width="@dimen/placeholder_width"
@@ -29,6 +33,30 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
+        <ImageButton
+            android:layout_width="@dimen/iv2_popDim"
+            android:layout_height="@dimen/iv2_popDim"
+            android:background="@android:color/transparent"
+            android:id="@+id/ibFav1"
+            android:alpha=".75"
+            android:src="@android:drawable/star_big_off"
+            android:layout_above="@+id/tvOverview"
+            android:layout_alignTop="@+id/tvTitle"
+            android:layout_alignParentEnd="true" />
+
+        <ImageView
+            android:layout_width="@dimen/iv2_popDim"
+            android:layout_height="@dimen/iv2_popDim"
+            android:foregroundGravity="left"
+            android:id="@+id/ivPlayIcon2"
+            android:alpha=".75"
+            android:src="@mipmap/ic_play"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="37dp"
+           />
+
 
         <TextView
             android:layout_width="wrap_content"

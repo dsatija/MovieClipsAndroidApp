@@ -13,12 +13,14 @@
             android:id="@+id/player"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:background="#fff"/>
 
         <ImageView
             android:layout_width="@dimen/movie_width"
             android:layout_height="match_parent"
-            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:scaleType="centerCrop"
             android:id="@+id/ivMDImage"
             android:padding="@dimen/space"
@@ -35,9 +37,23 @@
             android:fontFamily="sans-serif"
             android:id="@+id/tvMDTitle"
             android:paddingTop="@dimen/space"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:paddingLeft="@dimen/tvPaddingLeft"
             android:layout_below="@id/player"
             android:layout_toEndOf="@+id/ivMDImage" />
+
+        <ImageButton
+            android:id="@+id/ibShare"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@android:drawable/ic_menu_share"
+            android:tint="@android:color/black"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_alignTop="@+id/tvMDInfo"
+            android:layout_alignEnd="@+id/ivMDImage"
+            android:layout_toEndOf="@+id/tvMDInfo"
+            android:onClick="ShareIt"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,6 +93,9 @@
             android:layout_below="@+id/tvMDVotingAverageValue"
             android:layout_toEndOf="@+id/ivMDImage" />
 
+
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,6 +107,7 @@
             android:paddingTop="@dimen/space"
             android:layout_below="@+id/tvMDTotalVotesKey"
             android:layout_toEndOf="@+id/ivMDImage" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,6 +121,7 @@
             android:textStyle="bold"
             android:layout_below="@+id/tvMDVotingAverageValue"
             android:layout_toEndOf="@+id/tvMDTotalVotesKey" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -198,25 +219,65 @@
             tools:text="2016-09-10"
             android:id="@+id/tvMDReleaseDateValue"
             android:paddingTop="10dp"
-            android:layout_toRightOf="@id/tvMDReleaseDateKey"
-            android:layout_below="@+id/tvMDRuntimeKey" />
+            android:layout_toEndOf="@id/tvMDReleaseDateKey"
+            android:layout_below="@+id/tvMDRuntimeKey"
+            />
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:paddingLeft="@dimen/tvPaddingGenre"
+            android:paddingLeft="@dimen/outer_space"
             android:text="@string/more_videos"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/tvMDMoreVideosKey"
             android:paddingTop="@dimen/tvPaddingGenre"
+            android:visibility="gone"
             android:layout_below="@+id/tvMDReleaseDateValue" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/horizontal_recycler_view"
-            android:background="@android:color/white"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_below="@+id/tvMDMoreVideosKey"
             android:layout_height="@dimen/rvHorizHeight" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingLeft="@dimen/outer_space"
+            android:layout_marginTop="@dimen/space"
+            android:text="@string/recommended_movies"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvRecommendedMovies"
+            android:layout_below="@+id/horizontal_recycler_view" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvRecommendations"
+            android:layout_marginTop="@dimen/space"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/tvRecommendedMovies"
+            android:layout_height="@dimen/rvHorizHeight" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/ic_home"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:onClick="homeAction"
+            android:layout_alignBottom="@+id/tvMDInfo"
+            android:layout_toEndOf="@+id/tvMDVotingAverageValue" />
+
     </RelativeLayout>
+
+
+
+
 </ScrollView>

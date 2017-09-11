@@ -2,6 +2,12 @@
 <searchable xmlns:android="http://schemas.android.com/apk/res/android"
     android:label="@string/app_label"
     android:hint="@string/search_hint"
-    android:voiceSearchMode="showVoiceSearchButton|launchRecognizer">
+    android:searchMode="queryRewriteFromText"
+    android:searchSettingsDescription="string resource"
+    android:searchSuggestThreshold="2"
+    android:textColorHint="@android:color/white"
+    android:searchSuggestSelection = " ?"
+    android:searchSuggestIntentAction="android.intent.action.SEARCH"
+ >
 
-</searchable>
+    </searchable>

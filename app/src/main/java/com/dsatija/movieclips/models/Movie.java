@@ -9,15 +9,15 @@ import java.util.ArrayList;
 
 public class Movie implements Serializable {
 
-    String posterPath;
-    String backdropPath;
-    String originalTitle;
-    String overview;
-    String releaseDate;
-    Double voteAverage;
-    int voteCount;
-    long id;
-    Double popularity;
+    private String posterPath;
+    private String backdropPath;
+    private String originalTitle;
+    private String overview;
+    private String releaseDate;
+    private Double voteAverage;
+    private int voteCount;
+    private long id;
+    private Double popularity;
 
     public String getPosterPath() {
         return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
@@ -42,6 +42,7 @@ public class Movie implements Serializable {
     public Boolean isPopularMovie() {
         return voteAverage >= 5.0;
     }
+
 
     public String getOriginalTitle() {
         return originalTitle;
@@ -68,8 +69,21 @@ public class Movie implements Serializable {
         this.voteCount = jsonObject.getInt("vote_count");
         this.releaseDate = jsonObject.getString("release_date");
         this.popularity = jsonObject.getDouble("popularity");
-
         this.id = jsonObject.getLong("id");
+    }
+
+    public Movie(long id,String posterPath,String backdropPath,String originalTitle,String overview,
+            double voteAverage,int voteCount,String releaseDate,double popularity)  {
+        this.id = id;
+        this.posterPath = posterPath;
+        this.backdropPath = backdropPath;
+        this.originalTitle = originalTitle;
+        this.overview = overview;
+        this.voteAverage = voteAverage;
+        this.voteCount = voteCount;
+        this.releaseDate = releaseDate;
+        this.popularity = popularity;
+
     }
 
     public static ArrayList<Movie> fromJSONArray(JSONArray array) {
